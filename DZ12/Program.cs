@@ -43,12 +43,20 @@ namespace DZ12
         }
         static async Task DoExercise2()
         {
-            Console.WriteLine("Упражнение 2\n");
-
-            CalculateSquare(5);
+            Console.WriteLine("Упражнение 2\nВведите число");
+            bool flag = int.TryParse(Console.ReadLine(), out int num);
+            if(!flag)
+            {
+                do
+                {
+                    Console.WriteLine("Вы не ввели число, повторите\n");
+                    flag = int.TryParse(Console.ReadLine(), out num);
+                }while(!flag);
+            }
+            CalculateSquare(num);
             Console.WriteLine("Спим 8 сек");
             Thread.Sleep(8000);
-            await Task.Run(() => CalculateFactorial(5));
+            await Task.Run(() => CalculateFactorial(num));
         }
         static void DoExercise3()
         {
